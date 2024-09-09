@@ -1,15 +1,11 @@
-import pandas as pd # type: ignore
-import numpy as np # type: ignore
-from sklearn.model_selection import train_test_split # type: ignore
-from sklearn.tree import DecisionTreeRegressor # type: ignore
-from sklearn.preprocessing import StandardScaler, OneHotEncoder # type: ignore
-from sklearn.metrics import mean_squared_error # type: ignore
-from sklearn.model_selection import GridSearchCV # type: ignore
-from sklearn.preprocessing import LabelBinarizer # type: ignore
-import streamlit as st  # type: ignore
-from streamlit_option_menu import option_menu # type: ignore
+import pandas as pd 
+import numpy as np 
+import streamlit as st  
+from streamlit_option_menu import option_menu 
 import re
 import pickle as pk
+
+
 
 st.set_page_config(page_title="Industrial Copper Modelling",
                    layout="wide",
@@ -77,7 +73,6 @@ if selected == "Selling Price Prediction":
 
     if submit_button and flag==0:
 
-            import pickle as pk 
             with open("C:/Users/Bala Krishnan/OneDrive/Desktop/Industrial Copper Modelling/model.pkl", 'rb') as file:
                 load_model = pk.load(file)
 
@@ -89,7 +84,8 @@ if selected == "Selling Price Prediction":
 
             with open("C:/Users/Bala Krishnan/OneDrive/Desktop/Industrial Copper Modelling/status.pkl", 'rb') as file:
                 load_status = pk.load(file) 
-
+            
+            # Predict the selling price for a new sample
             new_sample= np.array([[np.log(float(quantity_tons)),application,np.log(float(thickness)),float(width),country,float(customer),int(product_ref),item_type,status]])
             new_sample_type = load_type.transform(new_sample[:, [7]]).toarray()
             new_sample_status = load_status.transform(new_sample[:, [8]]).toarray()
@@ -146,7 +142,7 @@ if selected == "Status Prediction":
                 st.write("You have entered an invalid value: ",k)
 
     if csubmit_button and cflag==0:
-            import pickle as pk
+            
             with open("C:/Users/Bala Krishnan/OneDrive/Desktop/Industrial Copper Modelling/Classific-model.pkl", 'rb') as file:
                 load_cmodel = pk.load(file)
 
