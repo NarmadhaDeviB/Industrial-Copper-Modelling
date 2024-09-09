@@ -5,14 +5,10 @@ from streamlit_option_menu import option_menu
 import re
 import pickle as pk
 
-
-
 st.set_page_config(page_title="Industrial Copper Modelling",
                    layout="wide",
                    initial_sidebar_state ="auto",
                    menu_items={'About': "This was done by Narmadha Devi B"})
-
-
 
 with st.sidebar:
     selected = option_menu(None, ["Home","Selling Price Prediction","Status Prediction"],
